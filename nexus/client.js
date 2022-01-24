@@ -6608,22 +6608,18 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 }
             }
 
-            setPlayerDrunk(player, state) {
-                if (player != undefined) {
-                    if (state) {
-
-                        mp.game.streaming.requestAnimSet('move_m@drunk@verydrunk');
-
-                        while (!mp.game.streaming.hasAnimSetLoaded('move_m@drunk@verydrunk')) {
-                            mp.game.wait(0);
-                        }
-
-                        player.setMovementClipset('move_m@drunk@verydrunk', 1);
-                    } else {
-                        player.resetMovementClipset('move_m@drunk@verydrunk');
+            async setPlayerDrunk(player, state) {
+                if (state) {
+                    mp.game.streaming.requestAnimSet('move_m@drunk@verydrunk');
+        
+                    while (!mp.game.streaming.hasAnimSetLoaded('move_m@drunk@verydrunk')) {
+                        await mp.game.waitAsync(5);
                     }
+        
+                    player.setMovementClipset('move_m@drunk@verydrunk', 1);
+                } else {
+                    player.resetMovementClipset(0);
                 }
-
             }
 
             setPlayerChatFlag(flag) {
