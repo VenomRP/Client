@@ -7244,26 +7244,33 @@ mp.game.streaming.requestIpl('vw_casino_main');
             }
 
             getVehicleItems() {
-                if (_player2.default.isInAnyVehicle()) {
+                if (_player2.default.isInAnyVehicle(false)) {
                     if (_player2.default.team == 16 && _player2.default.duty) {
-                        return this.menuItemsInCarDpos;
+                        return this.menuItemsInCarDposFlatbed;
+                    } else if (_player2.default.team == 1 && _player2.default.duty) {
+                        return this.menuItemsInCarCops;
+                    } else if (_player2.default.team == 13 && _player2.default.duty) {
+                        return this.menuItemsInCarCops;
+                    } else if (_player2.default.team == 5 && _player2.default.duty) {
+                        return this.menuItemsInCarCops;
                     } else {
                         return this.menuItemsInCar;
                     }
                 } else {
                     if (_player2.default.team == 16 && _player2.default.duty) {
                         return this.menuItemsOutOfCarDpos;
+                    } else if (_player2.default.team == 1 && _player2.default.duty) {
+                        return this.menuItemsOutOfCarCops;
+                    } else if (_player2.default.team == 13 && _player2.default.duty) {
+                        return this.menuItemsOutOfCarCops;
+                    } else if (_player2.default.team == 5 && _player2.default.duty) {
+                        return this.menuItemsOutOfCarCops;
                     } else {
-                        if (_player2.default.team == 1 || _player2.default.team == 5) {
-                            return this.menuItemsOutOfCarCop;
-                        } else {
-                            return this.menuItemsOutOfCar;
-                        }
+                        return this.menuItemsOutOfCar;
                     }
                 }
             }
         }
-
         exports.default = new VehicleModule();
 
     }, { "../player/player": 155 }], 162: [function (require, module, exports) {
