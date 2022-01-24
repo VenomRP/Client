@@ -461,9 +461,8 @@ mp.game.streaming.requestIpl('vw_casino_main');
 
             onEvent(name, ...args) {
                 if (name == "addCallToHistory") {
-                    mp.game.graphics.notify(args[0].number);
                     _player2.default.historys.addCallToHistory(args[0].contact, args[0].number, args[0].time, args[0].accepted, args[0].method);
-                    _telefonCalls2.default.declineCall();
+                    _telefon2.default.declineCall();
                 }
             }
         }
@@ -6598,7 +6597,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Venom Roleplay', 'venom-rp.de);
+                mp.discord.update('Venom Roleplay', 'venom-rp.de');
             }
 
             checkCamInAir() {
