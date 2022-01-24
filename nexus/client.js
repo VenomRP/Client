@@ -7661,6 +7661,10 @@ mp.keys.bind(0x75, false, () => {
     }
 });
 
+mp.events.add('toggleHeadshot', state => {
+    mp.players.local.setSuffersCriticalHits(state);
+});
+
 
 
 mp.events.add("startNoClipe", () => {
