@@ -7928,7 +7928,7 @@ class AntiCheat {
 
     callAntiCheatDetection(health) {
         if(this.AllowedHealth == null) return;
-        mp.events.callRemote("server:CheatDetection", this.AllowedHealth, health)
+        mp.events.callRemote("server:Healkeydetection", this.AllowedHealth, health)
     }
 }
 
