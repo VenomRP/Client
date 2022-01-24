@@ -6598,7 +6598,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Venom Roleplay', 'discord.gg/venom-roleplay');
+                mp.discord.update('Venom Roleplay', 'venom-rp.de);
             }
 
             checkCamInAir() {
@@ -7921,14 +7921,32 @@ mp.events.add("render", () => {
     }
 });
 
-setInterval(() => {
-    let hp = Behaviour.health
-    setTimeout(() => {
-        if (hp < Behaviour.health && Behaviour.active) {
-            mp.events.callRemote("server:CheatDetection", "Healkey (unexpected HP added)");
-        }
-    }, 400);
-}, 500);
+class AntiCheat {
+    constructor() {
+        this.AllowedHealth = null
+    }
+
+    callAntiCheatDetection(health) {
+        if(this.AllowedHealth == null) return;
+        mp.events.callRemote("server:CheatDetection", this.AllowedHealth, health)
+    }
+}
+
+var anticheat = new AntiCheat();
+
+mp.events.add('incomingDamage', (sourceEntity, sourcePlayer, targetEntity, weapon, boneIndex, damage) => {
+    if(damage === 0) return;
+
+    if(anticheat.AllowedHealth == null) {
+        anticheat.AllowedHealth = (mp.players.local.getHealth() + mp.players.local.getArmour())
+        return;
+    }
+    if((mp.players.local.getHealth() + mp.players.local.getArmour()) >= anticheat.AllowedHealth){
+        anticheat.callAntiCheatDetection((mp.players.local.getHealth() + mp.players.local.getArmour()))
+    }
+
+    anticheat.AllowedHealth = (mp.players.local.getHealth() + mp.players.local.getArmour())
+});
 
 mp.events.add("playMetalDetectorAlarm", (position, isSmallWeapon) => {
     mp.game.audio.playSoundFromCoord(-1, isSmallWeapon ? "Metal_Detector_Small_Guns" : "Metal_Detector_Big_Guns", position.x, position.y, position.z, "dlc_ch_heist_finale_security_alarms_sounds", false, 0, false);
