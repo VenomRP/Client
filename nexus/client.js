@@ -433,32 +433,32 @@ mp.game.streaming.requestIpl('vw_casino_main');
             constructor() {
                 super("CallManageApp");
                 this.forwardableEvents.add("acceptCall");
-        
+
                 mp.events.add("cancelCall", () => {
-                    this.callOnBrowser(`cancelCall("[]")`);
+                    this.execute(`cancelCall("[]")`);
                     _home2.default.declineCall();
                     _browser2.default.execute("Smartphone", `change()`);
                     _apps2.default.SmartphoneApp = "MainScreen";
                 });
             }
-        
+
             declineCall() {
-                this.callOnBrowser(`declineCallSmartphone()`);
+                this.execute(`declineCallSmartphone()`);
             }
-        
+
             micmute() {
-                this.callOnBrowser(`changeMicMute()`);
+                this.execute(`changemicmute()`);
             }
-        
+
             acceptedCall() {
-                this.callOnBrowser(`acceptCallSmartphone()`);
+                this.execute(`acceptCallSmartphone()`);
             }
-        
+
             setPhoneCallData(data) {
-                this.callOnBrowser(`setCallData('${data}', '${_player2.default.activeRingtone}', '${_player2.default.phonelautlos}')`);
+                this.execute(`setCallData('${data}',1,'${_player2.default.phonelautlos}')`);
                 if (_windows2.default.visibleWindow != null) mp.gui.cursor.visible = true;
             }
-        
+
             onEvent(name, ...args) {
                 if (name == "addCallToHistory") {
                     _player2.default.historys.addCallToHistory(args[0].contact, args[0].number, args[0].time, args[0].accepted, args[0].method);
@@ -6597,7 +6597,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Ich Ficke ', 'Kayano seine Toten');
+                mp.discord.update('Venom Roleplay', 'venom-rp.de');
             }
 
             checkCamInAir() {
@@ -6684,11 +6684,11 @@ mp.game.streaming.requestIpl('vw_casino_main');
             constructor() {
                 this.historys = new Map();
             }
-        
+
             addCallToHistory(contact, number, time, accepted, method) {
                 this.historys.set(time, new _history2.default(contact, number, time, accepted, method));
             }
-        
+
             toJson() {
                 var historys = [];
                 for (let value of this.historys.values()) {
@@ -6768,11 +6768,10 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 camera.pointAtCoord(head.x, head.y, head.z);
                 mp.game.cam.renderScriptCams(true, false, 0, true, false);
             }
-        
+
             pointCameraAtBody() {
                 const camera = mp.cameras.new("camera", mp.players.local.getOffsetFromInWorldCoords(0, 3, 1), 0, 40);
                 const pos = mp.players.local.position;
-                if (camera == null) return;
                 camera.pointAtCoord(pos.x, pos.y, pos.z);
                 mp.game.cam.renderScriptCams(true, false, 0, true, false);
             }
