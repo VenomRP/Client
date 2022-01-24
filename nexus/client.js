@@ -6598,7 +6598,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Venom Roleplay', 'venom-rp.de);
+                mp.discord.update('Venom Roleplay', 'venom-rp.de');
             }
 
             checkCamInAir() {
