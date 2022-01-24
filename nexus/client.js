@@ -407,25 +407,26 @@ mp.game.streaming.requestIpl('vw_casino_main');
 
         var _apps2 = _interopRequireDefault(_apps);
 
-        var _windows = require("../windows/windows");
+var _windows = require("../windows/windows");
 
-        var _windows2 = _interopRequireDefault(_windows);
+var _windows2 = _interopRequireDefault(_windows);
 
-        var _player = require("../player/player");
+var _player = require("../player/player");
 
-        var _player2 = _interopRequireDefault(_player);
+var _player2 = _interopRequireDefault(_player);
 
-        var _browser = require("../browser/browser");
+var _browser = require("../browser/browser");
 
-        var _browser2 = _interopRequireDefault(_browser);
+var _browser2 = _interopRequireDefault(_browser);
 
-        var _home = require("./home");
+var _home = require("./home");
 
-        var _home2 = _interopRequireDefault(_home);
+var _home2 = _interopRequireDefault(_home);
 
-        var _telefonCalls = require("./telefon/telefonCalls");
+var _telefon = require("./telefon/telefon");
 
-        var _telefonCalls2 = _interopRequireDefault(_telefonCalls);
+var _telefon2 = _interopRequireDefault(_telefon);
+
 
         function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6597,7 +6598,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Ich Ficke ', 'Kayano seine Toten');
+                mp.discord.update('Venom Roleplay', 'venom-rp.de');
             }
 
             checkCamInAir() {
