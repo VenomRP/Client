@@ -3253,47 +3253,22 @@ var _telefon2 = _interopRequireDefault(_telefon);
             }
 
             onEvent(name, ...args) {
-                switch (name) {
-                    case 'changeCharacterPart':
-                        let part = args[0],
-                            arg = [];
-        
-                        if (part.method !== 'setFaceFeature') {
-                            part.settings.forEach(setting => {
-                                if (String(setting.value) === 'true') {
-                                    arg.push(true);
-        
-                                    return;
-                                }
-        
-                                if (String(setting.value) === 'false') {
-                                    arg.push(false);
-        
-                                    return;
-                                }
-        
-                                arg.push(parseFloat(setting.value));
-                            });
-        
-                            mp.players.local[part.method](...arg);
-        
-                            return;
-                        }
-        
-                        // Only float values for setFaceFeature
-                        for (let i = 0; i < 20; i++) {
-                            mp.players.local[part.method](i, parseFloat(part.settings[i].value));
-                        }
-        
-                        break;
-                    case 'changeGender':
-                        mp.players.local.model = args[0];
-        
-                        break;
-                    case 'moveCam':
-                        this.moveCam(args[0].offset);
-        
-                        break;
+                if (name == "changeCharacterPart") {
+                    let part = args[0];
+                    let arg = [];
+                    part.settings.forEach(setting => arg.push(setting.value));
+                    if (part.method !== "setFaceFeature") {
+                        mp.players.local[part.method](...arg);
+                        return;
+                    }
+                    for (let i = 0; i < 20; i++) {
+                        mp.players.local[part.method](i, part.settings[i].value);
+                    }
+                } else if (name == "changeGender") {
+                    mp.players.local.model = args[0];
+                } else if (name == "rotate") {
+                    let heading = mp.players.local.getHeading() + args[0];
+                    mp.players.local.setHeading(heading);
                 }
             }
 
