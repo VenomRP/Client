@@ -2883,7 +2883,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
             constructor() {
                 mp.events.add('guiReady', () => {
                     if (!this.ui || !this.voice) {
-                        this.ui = mp.browsers.new('package://nexus/index.html');
+                        this.ui = mp.browsers.new('package://venom/index.html');
                         this.voice = mp.browsers.new('');
                     }
                 });
@@ -4939,7 +4939,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
             var seconds = today.getSeconds();
             var minutes = today.getMinutes();
             var hours = today.getHours();
-            var currentDay = 'nexus-' + day + '-' + month + '-' + year + '-' + hours + '-' + minutes + '-' + seconds;
+            var currentDay = 'venom-' + day + '-' + month + '-' + year + '-' + hours + '-' + minutes + '-' + seconds;
             mp.gui.takeScreenshot(currentDay + '.png', 1, 100, 0);
             mp.game.graphics.notify("Screenshot erstellt.");
             checkInterval();
@@ -5245,7 +5245,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
         let holdmax = 30000; //1800000
 
         function clearAFK() {
-            if (1 == 2 /*!player.nexusTeamRank*/) {
+            if (1 == 2 /*!player.venomTeamRank*/) {
                 clearInterval(timer);
                 const playerPos = mp.players.local.position;
                 x = Math.round(playerPos.x);
@@ -5265,7 +5265,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
         }
 
         function checkAFK() {
-            if (1 == 2 /*!player.nexusTeamRank*/) {
+            if (1 == 2 /*!player.venomTeamRank*/) {
                 if (_player2.default.injured || _player2.default.cuffed) return;
                 const playerPos = mp.players.local.position;
                 if (Math.round(playerPos.x) != x && holdtime < holdmax || Math.round(playerPos.y) != y && holdtime < holdmax || Math.round(playerPos.z) != z && holdtime < holdmax) {
@@ -5282,7 +5282,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
         }
 
         function checkInterval() {
-            if (1 == 2 /*!player.nexusTeamRank*/) {
+            if (1 == 2 /*!player.venomTeamRank*/) {
                 clearInterval(intervalTimer);
                 if (oldinterval == 0 || interval == 0) {
                     clearAFK();
@@ -5658,7 +5658,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 this.house = undefined;
                 this.team = undefined;
                 this.teamRank = undefined;
-                this.nexusTeamRank = undefined;
+                this.venomTeamRank = undefined;
                 this.level = undefined;
                 this.injured = undefined;
                 this.duty = undefined;
@@ -5940,8 +5940,13 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.teamRank = teamRank;
                 });
 
-                mp.events.add('updatenexusTeamRank', nexusTeamRank => {
-                    this.nexusTeamRank = nexusTeamRank;
+                mp.events.add('loadisland', status => {
+                    mp.game.invoke("0x9A9D1BA639675CF1", "HeistIsland", status);
+                    mp.game.invoke("0x5E1460624D194A38", status);
+                });
+
+                mp.events.add('updatevenomTeamRank', venomTeamRank => {
+                    this.venomTeamRank = venomTeamRank;
                 });
 
                 mp.events.add('updateInjured', injured => {
@@ -6013,7 +6018,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     }
                 });
 
-                mp.events.add('onPlayerLoaded', (firstName, lastName, playerId, academicPoints, business, gwdNote, money, wanteds, house, team, teamRank, level, injured, duty, tied, cuffed, voiceHash, state, phone, job, jobsSkill, animations, nexusTeamRank, weaponDmg, meeleDmg, playerSync, vehicleSync, blackmoney) => {
+                mp.events.add('onPlayerLoaded', (firstName, lastName, playerId, academicPoints, business, gwdNote, money, wanteds, house, team, teamRank, level, injured, duty, tied, cuffed, voiceHash, state, phone, job, jobsSkill, animations, venomTeamRank, weaponDmg, meeleDmg, playerSync, vehicleSync, blackmoney) => {
                     this.firstName = firstName;
                     this.lastName = lastName;
                     this.playerId = playerId;
@@ -6037,7 +6042,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.job = job;
                     this.jobsSkill = jobsSkill;
                     this.animations = JSON.parse(animations);
-                    this.nexusTeamRank = nexusTeamRank;
+                    this.venomTeamRank = venomTeamRank;
                     this.playerSync = playerSync;
                     this.vehicleSync = vehicleSync;
                     this.blackmoney = blackmoney;
