@@ -6153,18 +6153,19 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     });
                     mp.game.interior.refreshInterior(lsc_hangar.interiorID);
                 });
-
+        
                 mp.events.add('unloadlschangar', () => {
                     lsc_hangar.props.forEach(prop => {
-                        mp.game.interior.disableInteriorProp(prop);
+                        mp.game.interior.disableInteriorProp(lsc_hangar.interiorID, prop);
                     });
                     mp.game.streaming.requestIpl(lsc_hangar.interiorName);
                     mp.game.interior.refreshInterior(lsc_hangar.interiorID);
                 });
 
-                mp.events.add("updatesuperjump", sj => {
+                //Ist für einen Test rausgenommen kommen unnötige erros deswegen
+                /*mp.events.add("updatesuperjump", sj => {
                     this.superjump = sj;
-                });
+                });*/
 
                 mp.events.add('loadplanningroom', (grundraum, spiegel, einrichtungsstyle, inneneinrichtung, spielautomaten, rewards, keller, mechanic, hacker, weapons, wardrobe, casinoplan, casinodoor) => {
                     // Request both ipls
