@@ -5400,6 +5400,14 @@ mp.game.streaming.requestIpl('vw_casino_main');
                         mp.game.controls.disableControlAction(0, 31, true); //Move UD
                     }
 
+                    //Entfernt das Frauen rennen nach dem schießen
+                    if (mp.players.local.isUsingActionMode()) {
+                        mp.players.local.setUsingActionMode(false, -1, "-1");
+                    }
+
+                    //Entfernt Headshot Oneshot
+                    mp.players.local.setSuffersCriticalHits(false);
+
                     if (_player2.default.superjump) {
                         mp.game.invoke("0x57FFF03E423A4C0B", mp.players.local);
                     }
@@ -7174,9 +7182,26 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     }
                 });
 
+                mp.events.add("syncVehicleDoors", (vehicle, doors, state) => {
+                    if (vehicle == null) {
+                        return;
+                    }
+        
+                    if (state == true) {
+                        doors.forEach(door => {
+                            vehicle.setDoorOpen(door, false, false);
+                        });
+                    } else {
+                        doors.forEach(door => {
+                            vehicle.setDoorShut(door, false);
+                        });
+                    }
+                });
+
                 mp.events.add("responseVehicleSyncData", (vehicle, tuning, siren, sirenSound, doorStates) => {
                     if (vehicle == null || { tuning, siren, doorStates } == undefined) return;
 
+                    //TODO gibt ihr nen Error
                     if (siren == typeof Boolean) {
                         vehicle.setSiren(siren);
                     }
