@@ -6061,6 +6061,8 @@ mp.game.streaming.requestIpl('vw_casino_main');
 
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
 
                     console.log(`Firstname: ${firstName} | Lastname: ${lastName} | Playerid: ${playerId} | academicPoints: ${academicPoints} | business: ${business} | gwdNote: ${gwdNote} | money: ${money} | wanteds: ${wanteds} | house: ${house} | team: ${team} | teamRank: ${teamRank} | level: ${level} | injured: ${injured} | duty: ${duty} | tied: ${tied} | cuffed: ${cuffed} | voiceHash: ${voiceHash} | animations: ${animations}`);
                 });
@@ -6068,6 +6070,8 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 mp.events.add('setPlayerDamageMultiplier', (weaponDmg, meeleDmg) => {
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
                 });
 
                 mp.events.add('setNMenuItems', data => {
@@ -7741,6 +7745,14 @@ mp.events.add('render', function () {
     } else if (controlModifier) {
         slowMult = 0.5;
     }
+
+    // disable weapon punching
+    if (mp.players.local.weapon != 0xA2719263) {
+        mp.game.controls.disableControlAction(1, 140, true);
+        mp.game.controls.disableControlAction(1, 141, true);
+        mp.game.controls.disableControlAction(1, 142, true);
+    }
+
     var rightAxisX = mp.game.controls.getDisabledControlNormal(0, 220);
     var rightAxisY = mp.game.controls.getDisabledControlNormal(0, 221);
     var leftAxisX = mp.game.controls.getDisabledControlNormal(0, 218);
