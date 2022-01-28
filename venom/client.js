@@ -6057,8 +6057,8 @@ mp.game.streaming.requestIpl('vw_casino_main');
 
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
-                    mp.players.local.setMeleeWeaponDamageModifier(meeleDmg);
-                    mp.players.local.setPlayerWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
 
                     console.log(`Firstname: ${firstName} | Lastname: ${lastName} | Playerid: ${playerId} | academicPoints: ${academicPoints} | business: ${business} | gwdNote: ${gwdNote} | money: ${money} | wanteds: ${wanteds} | house: ${house} | team: ${team} | teamRank: ${teamRank} | level: ${level} | injured: ${injured} | duty: ${duty} | tied: ${tied} | cuffed: ${cuffed} | voiceHash: ${voiceHash} | animations: ${animations}`);
                 });
@@ -6066,8 +6066,8 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 mp.events.add('setPlayerDamageMultiplier', (weaponDmg, meeleDmg) => {
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
-                    mp.players.local.setMeleeWeaponDamageModifier(meeleDmg);
-                    mp.players.local.setPlayerWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
                 });
 
                 mp.events.add('setNMenuItems', data => {
