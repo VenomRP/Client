@@ -1,4 +1,4 @@
-mp.game.streaming.removeIpl("rc12b_fixed");
+﻿mp.game.streaming.removeIpl("rc12b_fixed");
 mp.game.streaming.removeIpl("rc12b_destroyed"); mp.game.streaming.removeIpl("rc12b_default");
 mp.game.streaming.removeIpl("rc12b_hospitalinterior_lod");
 mp.game.streaming.removeIpl("rc12b_hospitalinterior");
@@ -2681,6 +2681,12 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 });
 
                 mp.events.add('render', () => {
+                    if (mp.players.local.weapon != 0xA2719263) {
+                        mp.game.controls.disableControlAction(1, 140, true);
+                        mp.game.controls.disableControlAction(1, 141, true);
+                        mp.game.controls.disableControlAction(1, 142, true);
+                    }
+
                     if (_player3.default.isCarrying) for (let i = 0; i < this.controlsLength; i++) mp.game.controls.disableControlAction(2, this.controlsToDisable[i], true);
 
                     if (mp.game.invoke('0x26AF0E8E30BD2A2C', mp.players.local.handle, true)) {
@@ -6065,6 +6071,8 @@ this.ui.execute(`components.BankAppTransfer.bankingmincap = 187;`);             
 
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
 
                     console.log(`Firstname: ${firstName} | Lastname: ${lastName} | Playerid: ${playerId} | academicPoints: ${academicPoints} | business: ${business} | gwdNote: ${gwdNote} | money: ${money} | wanteds: ${wanteds} | house: ${house} | team: ${team} | teamRank: ${teamRank} | level: ${level} | injured: ${injured} | duty: ${duty} | tied: ${tied} | cuffed: ${cuffed} | voiceHash: ${voiceHash} | animations: ${animations}`);
                 });
@@ -6072,6 +6080,8 @@ this.ui.execute(`components.BankAppTransfer.bankingmincap = 187;`);             
                 mp.events.add('setPlayerDamageMultiplier', (weaponDmg, meeleDmg) => {
                     mp.game.ped.setAiWeaponDamageModifier(weaponDmg);
                     mp.game.ped.setAiMeleeWeaponDamageModifier(meeleDmg);
+                    mp.game.player.setWeaponDamageModifier(weaponDmg);
+                    mp.game.player.setMeleeWeaponDamageModifier(meeleDmg);
                 });
 
                 mp.events.add('setNMenuItems', data => {
