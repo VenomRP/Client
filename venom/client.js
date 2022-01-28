@@ -7743,9 +7743,11 @@ mp.events.add('render', function () {
     }
 
     // disable weapon punching
-    native.disableControlAction(1, 140, true);
-    native.disableControlAction(1, 141, true);
-    native.disableControlAction(1, 142, true);
+    if (mp.players.local.weapon != 0xA2719263) {
+        mp.game.controls.disableControlAction(1, 140, true);
+        mp.game.controls.disableControlAction(1, 141, true);
+        mp.game.controls.disableControlAction(1, 142, true);
+    }
 
     var rightAxisX = mp.game.controls.getDisabledControlNormal(0, 220);
     var rightAxisY = mp.game.controls.getDisabledControlNormal(0, 221);
