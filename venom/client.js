@@ -7741,6 +7741,12 @@ mp.events.add('render', function () {
     } else if (controlModifier) {
         slowMult = 0.5;
     }
+
+    // disable weapon punching
+    native.disableControlAction(1, 140, true);
+    native.disableControlAction(1, 141, true);
+    native.disableControlAction(1, 142, true);
+
     var rightAxisX = mp.game.controls.getDisabledControlNormal(0, 220);
     var rightAxisY = mp.game.controls.getDisabledControlNormal(0, 221);
     var leftAxisX = mp.game.controls.getDisabledControlNormal(0, 218);
