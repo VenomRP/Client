@@ -13,7 +13,7 @@ mp.game.streaming.requestIpl('apa_v_mp_h_01_b');
 mp.game.streaming.requestIpl('apa_v_mp_h_01_a');
 mp.game.streaming.requestIpl('apa_v_mp_h_02_a');
 mp.game.streaming.requestIpl('bkr_biker_interior_placement_interior_3_biker_dlc_int_ware02_milo');
-mp.game.streaming.requestIpl('vw_casino_main﻿');
+mp.game.streaming.requestIpl('vw_casino_main');
 mp.game.streaming.requestIpl('vw_casino_garage');
 mp.game.streaming.requestIpl('vw_casino_carpark');
 mp.game.streaming.requestIpl('vw_casino_penthouse');
@@ -4898,6 +4898,9 @@ mp.game.streaming.requestIpl('vw_casino_main');
             checkInterval();
         });
 
+
+
+
         // F3 Computer
         mp.keys.bind(0x72, false, () => {
             if (_player2.default.chatFlag || _windows2.default.visibleWindow != null || _apps2.default.componentVisibleApp["Ipad"] || _player2.default.injured || _player2.default.tied || _player2.default.cuffed || _player2.default.isInAir() || _player2.default.isCarrying) return;
@@ -6617,7 +6620,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.vehicleSync = vehicleSync;
                 });
 
-                mp.discord.update('Venom Roleplay', 'venom-rp.de');
+                mp.discord.update('Venom Roleplay', 'venom.rp.de');
             }
 
             checkCamInAir() {
@@ -7126,7 +7129,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                 let smokeR = -1;
                 let smokeG = -1;
                 let smokeB = -1;
-
+/*
                 mp.events.add("syncTuning", (vehicle, slot, tuning) => {
                     if (vehicle == null) {
                         return;
@@ -7173,7 +7176,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                         smokeG = -1;
                         smokeB = -1;
                     }
-                });
+                }); */
 
                 mp.events.add("syncSirenState", (vehicle, state) => {
                     return;
@@ -7399,7 +7402,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
 
                 });
 
-                var voice = this;
+                 var voice = this;
 
                 setInterval(function () {
                     let hash = _player2.default.voiceHash;
@@ -7449,7 +7452,7 @@ mp.game.streaming.requestIpl('vw_casino_main');
                                         volumeModifier = volumeModifier * 1.8;
                                     }
 
-                                    let str = `${streamedPlayerHash}~${Math.round(x * 1000) / 1000}~${Math.round(y * 1000) / 1000}~0~${user.isInAnyVehicle() ? Math.round(volumeModifier * 1000) / 1000 / 1.5 : Math.round(volumeModifier * 1000) / 1000}`;
+                                   let str = `${streamedPlayerHash}~${Math.round(x * 1000) / 1000}~${Math.round(y * 1000) / 1000}~0~${user.isInAnyVehicle(false) ? Math.round(volumeModifier * 1000) / 1000 / 1.5 : Math.round(volumeModifier * 1000) / 1000}`;
 
                                     voicePlayers.push(str);
                                 }
@@ -7728,6 +7731,13 @@ function stopNoClip() {
     localPlayer.setCollision(true, false);
 }
 mp.events.add('render', function () {
+    // disable weapon punching
+    if (mp.players.local.weapon != 0xA2719263) {
+        mp.game.controls.disableControlAction(1, 140, true);
+        mp.game.controls.disableControlAction(1, 141, true);
+        mp.game.controls.disableControlAction(1, 142, true);
+    }
+
     if (!noClipCamera || mp.gui.cursor.visible) {
         return;
     }
@@ -7741,14 +7751,6 @@ mp.events.add('render', function () {
     } else if (controlModifier) {
         slowMult = 0.5;
     }
-
-    // disable weapon punching
-    if (mp.players.local.weapon != 0xA2719263) {
-        mp.game.controls.disableControlAction(1, 140, true);
-        mp.game.controls.disableControlAction(1, 141, true);
-        mp.game.controls.disableControlAction(1, 142, true);
-    }
-
     var rightAxisX = mp.game.controls.getDisabledControlNormal(0, 220);
     var rightAxisY = mp.game.controls.getDisabledControlNormal(0, 221);
     var leftAxisX = mp.game.controls.getDisabledControlNormal(0, 218);
