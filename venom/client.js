@@ -2888,7 +2888,10 @@ mp.game.streaming.requestIpl('vw_casino_main');
                         this.voice = mp.browsers.new('');
                     }
                 });
-mp.events.add("updateBankingapp", (banking, data) => {                     this.ui.execute(`components.BankAppOverview.responseBankAppOverview(${banking}, ${data});`);                 });
+mp.events.add("updateBankingapp", (banking, data) => {                     this.ui.execute(`components.BankAppOverview.responseBankAppOverview(${banking}, ${data});`);                
+
+this.ui.execute(`components.BankAppTransfer.bankingmaxcap = ${banking};`);      
+this.ui.execute(`components.BankAppTransfer.bankingmincap = 187;`);               });
             }
 
             execute(component, execute) {
