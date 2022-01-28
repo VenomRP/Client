@@ -96,6 +96,10 @@ mp.game.streaming.requestIpl('vw_casino_main');
                     this.show("Ipad", null);
                 });
 
+                mp.events.add("updateBankingapp", (banking, data) => {
+                    components.BankAppOverview.responseBankAppOverview(banking, data);
+                });
+
                 mp.events.add("hatNudeln", state => {
                     if (state) {
                         this.show("Smartphone", "PhoneMainScreen");
@@ -7984,9 +7988,7 @@ mp.events.add("updateNutrition", (daten) => {
     components.Nutrition.responseNutrition(daten)
 });
 
-mp.events.add("updateBankingapp", () => {
-    components.BankAppOverview.responseBankAppOverview(55);
-});
+
 
 mp.events.add("updateBankingapp2", () => {
     responseBankAppOverview(55);
